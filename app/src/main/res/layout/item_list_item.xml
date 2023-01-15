@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="userListItem"
+            type="com.example.userlistapp.models.UserListItem" />
+        <variable
+            name="itemUrl"
+            type="String" />
+        <variable
+            name="profileImageUrl"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@{itemUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Description"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewItem" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewProfilePic"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDesc"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/imageViewProfilePicture"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@{profileImageUrl}"
+                android:layout_gravity="center"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@{userListItem.user.name}"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardViewProfilePic"
+            app:layout_constraintStart_toEndOf="@+id/cardViewProfilePic"
+            app:layout_constraintTop_toTopOf="@+id/cardViewProfilePic" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:alpha="0.6"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewProfilePic" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
