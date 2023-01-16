@@ -21,16 +21,18 @@ class ItemListAdapter(val mContext: Context, val listOfUsers: List<UserListItem>
     override fun onBindViewHolder(holder: UserListViewHolder, position: Int) {
         val currentUser = listOfUsers[position]
 
-        holder.bind(mContext,currentUser,currentUser.urls.thumb,currentUser.user.profileImage.medium)
+        holder.bind(mContext,currentUser,currentUser.urls.thumb,currentUser.user.profileImage.medium,position,listOfUsers)
     }
 
     override fun getItemCount(): Int = listOfUsers.size
 
     class UserListViewHolder(val binding: ItemListItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(mContext: Context, userListItem: UserListItem, itemUrl: String, profileImageUrl: String){
+        fun bind(mContext: Context, userListItem: UserListItem, itemUrl: String, profileImageUrl: String, position: Int, userList: List<UserListItem>){
             binding.userListItem = userListItem
+
             Glide.with(mContext).load(itemUrl).into(binding.imageViewItem)
             Glide.with(mContext).load(profileImageUrl).into(binding.imageViewProfilePicture)
+
             if (userListItem.description != null){
                 binding.textViewDesc.text = userListItem.description.toString()
             } else{
@@ -40,6 +42,12 @@ class ItemListAdapter(val mContext: Context, val listOfUsers: List<UserListItem>
                     binding.textViewDesc.visibility = View.GONE
                 }
             }
+
+            if (position == userList.size-1){
+                binding.view.visibility = View.GONE
+            }
+
+
         }
     }
 }

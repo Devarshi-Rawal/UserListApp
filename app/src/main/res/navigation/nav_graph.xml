@@ -9,5 +9,22 @@
         android:id="@+id/userListFragment"
         android:name="com.example.userlistapp.fragments.ItemListFragment"
         android:label="UserListFragment"
-        tools:layout="@layout/fragment_item_list"/>
+        tools:layout="@layout/fragment_item_list">
+        <action
+            android:id="@+id/action_userListFragment_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment" />
+        <action
+            android:id="@+id/action_userListFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="com.example.userlistapp.fragments.ItemDetailFragment"
+        android:label="ItemDetailFragment"
+        tools:layout="@layout/fragment_item_detail"/>
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.example.userlistapp.fragments.UserDetailFragment"
+        android:label="UserDetailFragment"
+        tools:layout="@layout/fragment_user_detail"/>
 </navigation>

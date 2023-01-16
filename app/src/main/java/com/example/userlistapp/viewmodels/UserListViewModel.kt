@@ -41,12 +41,4 @@ class UserListViewModel : ViewModel() {
             }
         }
     }
-
-    /*companion object{
-        @BindingAdapter("imageUrl")
-        fun setImage(image: ImageView, url: String?) {
-            Glide.with(image.context).load(url)
-                .into(image)
-        }
-    }*/
 }
