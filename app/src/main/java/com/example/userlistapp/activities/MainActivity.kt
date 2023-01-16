@@ -11,8 +11,6 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import com.example.userlistapp.R
 import com.example.userlistapp.databinding.ActivityMainBinding
-
-
 class MainActivity : AppCompatActivity() {
 
     //binding variable created
@@ -21,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        customStatusBar()
 
+        customStatusBar()
     }
 
     private fun customStatusBar(){

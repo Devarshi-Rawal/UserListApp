@@ -1,11 +1,15 @@
 package com.example.userlistapp.viewmodels
 
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.example.userlistapp.BuildConfig
+import com.example.userlistapp.fragments.ItemListFragmentDirections
 import com.example.userlistapp.models.UserList
 import com.example.userlistapp.models.UserListItem
 import com.example.userlistapp.networking.RetrofitClient
@@ -14,8 +18,6 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-
-
 class UserListViewModel : ViewModel() {
 
     private val _userListStateFlow = MutableStateFlow<List<UserListItem>>(emptyList())
@@ -33,11 +35,14 @@ class UserListViewModel : ViewModel() {
             _isLoading.value = false
 
             if (response.isSuccessful){
-                Log.d("UserList", "getAllUserList: ${response.body().toString()}")
+
+                if (BuildConfig.DEBUG)
+                    Log.d("UserList", "getAllUserList: ${response.body().toString()}")
                 response.body()?.let { userList.addAll(it) }
                 _userListStateFlow.value = userList
             } else{
-                Log.d("ErrorOccured", "getAllUserList: ${response.code()}")
+                if (BuildConfig.DEBUG)
+                    Log.d("ErrorOccured", "getAllUserList: ${response.code()}")
             }
         }
     }

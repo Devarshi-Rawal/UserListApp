@@ -21,11 +21,7 @@ class ItemListFragment : Fragment() {
     //binding variable created
     lateinit var binding: FragmentItemListBinding
     //viewmodel instance created and initialized
-    val viewModel: UserListViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val viewModel: UserListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +29,6 @@ class ItemListFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_item_list,container,false)
 
-        //code from here
         setRecyclerView()
 
         return binding.root
@@ -43,7 +38,6 @@ class ItemListFragment : Fragment() {
     private fun setRecyclerView(){
         lifecycleScope.launch{
             viewModel.getAllUserList()
-
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.userListStateFlow.collect{
                     binding.recyclerViewUserList.adapter = ItemListAdapter(requireContext(),it)

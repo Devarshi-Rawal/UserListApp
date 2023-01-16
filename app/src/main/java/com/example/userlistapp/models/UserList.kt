@@ -236,7 +236,7 @@ data class User(
 	val lastName: Any,
 
 	@field:SerializedName("bio")
-	val bio: String,
+	val bio: Any? = null,
 
 	@field:SerializedName("total_likes")
 	val totalLikes: Int,
@@ -257,7 +257,7 @@ data class User(
 	val name: String,
 
 	@field:SerializedName("location")
-	val location: Any,
+	val location: Any? = null,
 
 	@field:SerializedName("links")
 	val links: Links,
